@@ -33,7 +33,7 @@ import tensorflow.compat.v2 as tf
 from models.research.object_detection import model_lib_v2
 
 
-flags.DEFINE_string('pipeline_config_path', "bharath/pipeline.config", 'Path to pipeline config '
+flags.DEFINE_string('pipeline_config_path', "pretrained models/modelname/pipeline.config", 'Path to pipeline config '
                     'file.')
 flags.DEFINE_integer('num_train_steps',20000, 'Number of train steps.')
 flags.DEFINE_bool('eval_on_train_data', True, 'Enable evaluating on train '
@@ -45,7 +45,7 @@ flags.DEFINE_integer('sample_1_of_n_eval_on_train_examples', 5, 'Will sample '
                      'where n is provided. This is only used if '
                      '`eval_training_data` is True.')
 flags.DEFINE_string(
-    'model_dir', "models/bharath", 'Path to output model directory '
+    'model_dir', "training_checkpoints/model_name", 'Path to output model directory '
                        'where event and checkpoint files will be written.')
 flags.DEFINE_string(
     'checkpoint_dir', None, 'Path to directory holding a checkpoint.  If '

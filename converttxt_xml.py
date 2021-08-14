@@ -2,9 +2,9 @@ import os
 import xml.etree.cElementTree as ET
 from PIL import Image
 
-ANNOTATIONS_DIR_PREFIX = "sample_30k_virtualdataset/"
+ANNOTATIONS_DIR_PREFIX = "images_annotations/"
 
-DESTINATION_DIR = "sample_30k_virtualdataset_anotation_new/"
+DESTINATION_DIR = "images_annotations_XML/"
 
 CLASS_MAPPING = {
     '0': 'head',
@@ -19,7 +19,7 @@ CLASS_MAPPING = {
 def create_root(file_prefix, width, height):
     root = ET.Element("annotations")
     ET.SubElement(root, "filename").text = "{}.jpg".format(file_prefix)
-    ET.SubElement(root, "folder").text = "sample_30k_virtualdataset/"
+    ET.SubElement(root, "folder").text = ANNOTATIONS_DIR_PREFIX
     size = ET.SubElement(root, "size")
     ET.SubElement(size, "width").text = str(width)
     ET.SubElement(size, "height").text = str(height)
@@ -53,11 +53,11 @@ def create_file(file_prefix, width, height, voc_labels):
 def read_file(file_path):
     file_prefix = file_path.split(".txt")[0]
     image_file_name = "{}.jpg".format(file_prefix)
-    img = Image.open("{}/{}".format("sample_30k_virtualdataset_resized/", image_file_name))
+    img = Image.open("{}/{}".format(ANNOTATIONS_DIR_PREFIX, image_file_name))
     print(img)
 
     w, h = img.size
-    prueba = "{}/{}".format("sample_30k_virtualdataset/", file_path)
+    prueba = "{}/{}".format(ANNOTATIONS_DIR_PREFIX, file_path)
     print(prueba)
     with open(prueba) as file:
         lines = file.readlines()
@@ -84,7 +84,7 @@ def start():
         os.makedirs(DESTINATION_DIR)
     for filename in os.listdir(ANNOTATIONS_DIR_PREFIX):
         if filename.endswith('txt'):
-            PathFileName = "{}/{}".format("sample_30k_virtualdataset/", filename)
+            PathFileName = "{}/{}".format(ANNOTATIONS_DIR_PREFIX, filename)
             if os.stat(PathFileName).st_size > 0:
                 print("**********************")
                 read_file(filename)

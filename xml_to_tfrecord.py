@@ -18,18 +18,18 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-x",
                     "--xml_dir",
                     help="Path to the folder where the input .xml files are stored.",
-                    type=str, default= "sample_30k_virtualdataset_anotation_new")
+                    type=str, default= "images_annotations")
 parser.add_argument("-l",
                     "--labels_path",
-                    help="Path to the labels (.pbtxt) file.", type=str, default= "pbtxt_files/virtual_data.pbtxt" )
+                    help="Path to the labels (.pbtxt) file.", type=str, default= "pbtxt_files/class_label.pbtxt" )
 parser.add_argument("-o",
                     "--output_path",
-                    help="Path of output TFRecord (.record) file.", type=str, default= "tfrecords/virtualdata_tfrecord.record")
+                    help="Path of output TFRecord (.record) file.", type=str, default= "tfrecords/train.record")
 parser.add_argument("-i",
                     "--image_dir",
                     help="Path to the folder where the input image files are stored. "
                          "Defaults to the same directory as XML_DIR.",
-                    type=str, default= "sample_30k_virtualdataset_resized")
+                    type=str, default= "images_annotations")
 parser.add_argument("-c",
                     "--csv_path",
                     help="Path of output .csv file. If none provided, then no file will be "
