@@ -4,7 +4,7 @@ item {
     display_name: "head"
 }
 item {
-    name: "vest"
+    name: "helmet"
     id: 2
     display_name: "helmet"
 }

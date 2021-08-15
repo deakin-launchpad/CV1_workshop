@@ -21,7 +21,7 @@ parser.add_argument("-x",
                     type=str, default= "images_annotations")
 parser.add_argument("-l",
                     "--labels_path",
-                    help="Path to the labels (.pbtxt) file.", type=str, default= "pbtxt_files/class_label.pbtxt" )
+                    help="Path to the labels (.pbtxt) file.", type=str, default= "labels_pbtxt/class_labels.pbtxt" )
 parser.add_argument("-o",
                     "--output_path",
                     help="Path of output TFRecord (.record) file.", type=str, default= "tfrecords/train.record")

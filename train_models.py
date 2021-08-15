@@ -33,7 +33,7 @@ import tensorflow.compat.v2 as tf
 from models.research.object_detection import model_lib_v2
 
 
-flags.DEFINE_string('pipeline_config_path', "pretrained models/modelname/pipeline.config", 'Path to pipeline config '
+flags.DEFINE_string('pipeline_config_path', "pre_trained_models/modelname/pipeline.config", 'Path to pipeline config '
                     'file.')
 flags.DEFINE_integer('num_train_steps',20000, 'Number of train steps.')
 flags.DEFINE_bool('eval_on_train_data', True, 'Enable evaluating on train '
@@ -99,9 +99,10 @@ def main(unused_argv):
       strategy = tf.distribute.experimental.TPUStrategy(resolver)
     elif FLAGS.num_workers > 1:
       strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy( )
-      #strategy = tf.distribute.MirroredStrategy(devices=["/gpu:1", "/gpu:2", "/gpu:3", "/gpu:6"],cross_device_ops=tf.distribute.ReductionToOneDevice())
+
     else:
-        strategy = tf.distribute.MirroredStrategy(devices=["/gpu:1", "/gpu:2", "/gpu:3","/gpu:5"],cross_device_ops=tf.distribute.ReductionToOneDevice())
+        strategy = tf.distribute.MirroredStrategy(devices=["/gpu:0"])
+        # strategy = tf.distribute.MirroredStrategy(devices=["/gpu:1", "/gpu:2", "/gpu:3", "/gpu:6"],cross_device_ops=tf.distribute.ReductionToOneDevice())
 
     with strategy.scope():
       model_lib_v2.train_loop(
